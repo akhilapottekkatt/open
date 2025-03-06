@@ -1,0 +1,52 @@
+package module1;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class StringSort {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        
+        System.out.println("Enter the number of strings to sort:");
+        int count = scan.nextInt();
+        scan.nextLine(); // Consume the leftover newline
+        
+        String[] stringlist = new String[count];
+        
+        System.out.println("Enter your strings:");
+        for (int i = 0; i < count; i++) {
+            stringlist[i] = scan.nextLine();
+        }
+        
+        System.out.println("Choose 1 or 2 from the menu below:");
+        System.out.println("1: In-built sort");
+        System.out.println("2: User-defined sort");
+        
+        int choice = scan.nextInt();
+        
+        switch (choice) {
+            case 1:
+                Arrays.sort(stringlist);
+                System.out.println("Sorted Strings: " + Arrays.toString(stringlist));
+                break;
+                
+            case 2:
+                // Bubble sort method (User-defined sorting)
+                for (int i = 0; i < count - 1; i++) {
+                    for (int j = i + 1; j < stringlist.length; j++) {
+                        if (stringlist[i].compareTo(stringlist[j]) > 0) {
+                            String tmp = stringlist[i];
+                            stringlist[i] = stringlist[j];
+                            stringlist[j] = tmp;
+                        }
+                    }
+                }
+                System.out.println("Sorted Strings: " + Arrays.toString(stringlist));
+                break;
+                
+            default:
+                System.out.println("Invalid choice! Please enter 1 or 2.");
+        }
+        
+        scan.close(); // Close scanner to prevent resource leaks
+    }
+}
